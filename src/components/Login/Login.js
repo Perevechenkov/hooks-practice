@@ -1,43 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.scss';
 
 export default function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [emailIsValid, setEmailIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  //TODO: change over-complicated validation logic
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setFormIsValid(
+        enteredPassword.trim().length > 3 && enteredEmail.includes('@')
+      );
+    }, 300);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = event => {
     setEnteredEmail(event.target.value);
-
-    validateEmailHandler(event.target.value);
-
-    validateFormHandler(event.target.value, enteredPassword);
   };
 
   const passwordChangeHandler = event => {
     setEnteredPassword(event.target.value);
-
-    validatePasswordHandler(event.target.value);
-
-    validateFormHandler(enteredEmail, event.target.value);
   };
 
-  const validateFormHandler = (email, pass) => {
-    setFormIsValid(pass.trim().length > 3 && email.includes('@'));
+  const validateEmailHandler = () => {
+    setEmailIsValid(enteredEmail.includes('@'));
   };
 
-  const validateEmailHandler = (email = enteredEmail) => {
-    setEmailIsValid(email.includes('@'));
-  };
-
-  const validatePasswordHandler = (pass = enteredPassword) => {
-    setPasswordIsValid(pass.trim().length > 3);
+  const validatePasswordHandler = () => {
+    setPasswordIsValid(enteredPassword.trim().length > 3);
   };
 
   const submitHandler = event => {
@@ -51,7 +49,7 @@ export default function Login(props) {
       <form onSubmit={submitHandler}>
         <div
           className={`${classes.control} ${
-            emailIsValid ? '' : classes.invalid
+            emailIsValid === false ? classes.invalid : ''
           }`}
         >
           <label htmlFor='email'>E-Mail</label>
@@ -65,7 +63,7 @@ export default function Login(props) {
         </div>
         <div
           className={`${classes.control} ${
-            passwordIsValid ? '' : classes.invalid
+            passwordIsValid === false ? classes.invalid : ''
           }`}
         >
           <label htmlFor='password'>Password</label>
