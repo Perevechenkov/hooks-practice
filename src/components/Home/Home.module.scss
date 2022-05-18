@@ -1,0 +1,10 @@
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins";
+
+.home {
+     @include mixins.card;
+     padding: 3rem;
+
+     color: $text-color;
+     text-align: center;
+}

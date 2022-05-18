@@ -47,7 +47,7 @@ export default function Login(props) {
   };
 
   return (
-    <Card className={classes.Login}>
+    <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <div
           className={`${classes.control} ${

@@ -1,6 +1,57 @@
-.invalid {
-     input {
-          border-color: red;
-          // background-color: red;
+@use "../../abstracts/variables" as *;
+@use "../../abstracts/mixins";
+
+.login {
+     @include mixins.card;
+
+     .control {
+          margin: 1rem 0;
+
+          display: flex;
+          flex-direction: column;
+
+          label {
+               flex: 1;
+
+               margin-bottom: 0.5rem;
+
+               color: $text-color;
+               font-weight: bold;
+          }
+
+          input {
+               flex: 3;
+
+               border: 1px solid $border-light-opace;
+
+               background-color: $bg-primary-light;
+
+               color: $text-color;
+
+               &:focus {
+                    border-color: $border-light;
+
+                    outline: none;
+               }
+          }
+
+          &.invalid {
+               input {
+                    border-color: $bg-error;
+               }
+          }
+
+          @media (min-width: 768px) {
+               flex-direction: row;
+               align-items: center;
+
+               & label {
+                    margin-bottom: 0;
+               }
+          }
+     }
+
+     .actions {
+          text-align: center;
      }
 }
