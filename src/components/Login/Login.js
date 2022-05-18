@@ -5,14 +5,23 @@ import classes from './Login.module.scss';
 
 export default function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState('');
-  const [enteredPassword, setEnteredPasswird] = useState('');
-
-  const passwordChangeHandler = event => {
-    setEnteredPasswird(event.targer.value);
-  };
+  const [enteredPassword, setEnteredPassword] = useState('');
+  const [formIsValid, setFormIsValid] = useState(false);
 
   const emailChangeHandler = event => {
-    setEnteredEmail(event.targer.value);
+    setEnteredEmail(event.target.value);
+
+    validateFormHandler(event.target.value, enteredPassword);
+  };
+
+  const passwordChangeHandler = event => {
+    setEnteredPassword(event.target.value);
+
+    validateFormHandler(enteredEmail, event.target.value);
+  };
+
+  const validateFormHandler = (email, pass) => {
+    setFormIsValid(pass.trim().length > 3 && email.includes('@'));
   };
 
   const submitHandler = event => {
@@ -43,7 +52,7 @@ export default function Login(props) {
           />
         </div>
         <div className={`${classes.actions}`}>
-          <Button type='submit' className={classes.btn}>
+          <Button type='submit' className={classes.btn} disabled={!formIsValid}>
             Login
           </Button>
         </div>
