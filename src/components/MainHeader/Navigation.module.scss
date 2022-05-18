@@ -25,6 +25,8 @@
                }
 
                button {
+                    padding: 0.5rem 1.5rem;
+
                     border: 1px solid $pink-light;
                     border-radius: 20px;
                     box-shadow: 0 2px 4px $border-dark-opace;
@@ -41,8 +43,12 @@
 
                     &:hover,
                     &:active {
+                         border-color: $pink-light;
+
+                         background-color: $pink-light;
+
                          color: #f3cafb;
-                         box-shadow: 0 2px 10px $border-dark;
+                         // box-shadow: 0 2px 10px $border-dark;
                     }
                }
           }

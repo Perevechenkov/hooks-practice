@@ -20,9 +20,12 @@
           }
 
           input {
+               padding: 0.35rem;
+
                flex: 3;
 
                border: 1px solid $border-light-opace;
+               border-radius: 6px;
 
                background-color: $bg-primary-light;
 
