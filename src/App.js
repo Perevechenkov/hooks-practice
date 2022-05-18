@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}
