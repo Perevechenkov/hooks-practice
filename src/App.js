@@ -1,3 +1,9 @@
+import MainHeader from './components/MainHeader/MainHeader';
+
 export default function App() {
-  return <div></div>;
+  return (
+    <>
+      <MainHeader />
+    </>
+  );
 }
