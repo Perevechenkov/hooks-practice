@@ -1,0 +1,36 @@
+@use "../../../abstracts/variables" as *;
+
+.button {
+     padding: 0.75rem 3.5rem;
+
+     border: 1px solid $bg-primary-violet;
+     border-radius: 30px;
+
+     background-color: $bg-primary-violet;
+     color: $text-color;
+     cursor: pointer;
+     font: inherit;
+     font-size: 1.15rem;
+
+     transition: all 0.1s ease-out;
+
+     &:focus {
+          outline: none;
+     }
+
+     &:hover,
+     &:active {
+          border-color: $bg-primary-violet-hover;
+
+          background-color: $bg-primary-violet-hover;
+     }
+
+     &:disabled {
+          border-color: $border-light;
+
+          background-color: $border-light;
+
+          color: $border-dark;
+          cursor: not-allowed;
+     }
+}
