@@ -30,11 +30,11 @@ export default function Login(props) {
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: '',
-    isValid: true,
+    isValid: null,
   });
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
     value: '',
-    isValid: true,
+    isValid: null,
   });
 
   const { isValid: emailIsValid } = emailState;
