@@ -1,4 +1,6 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer, useContext } from 'react';
+
+import AuthContext from '../../store/auth-context';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.scss';
@@ -37,6 +39,8 @@ export default function Login(props) {
     isValid: null,
   });
 
+  const ctx = useContext(AuthContext);
+
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
@@ -69,7 +73,7 @@ export default function Login(props) {
   const submitHandler = event => {
     event.preventDefault();
 
-    props.onLogin(emailState.value, passwordState.value);
+    ctx.onLogin(emailState.value, passwordState.value);
   };
 
   return (
